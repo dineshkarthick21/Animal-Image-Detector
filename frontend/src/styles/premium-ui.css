@@ -18,12 +18,18 @@
 
 .premium-container {
   min-height: 100vh;
-  background: var(--background);
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 0;
+  position: relative;
+  background-image: url(/animal_detector_back.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .premium-container-full {
@@ -38,19 +44,21 @@
 }
 
 .premium-card {
-  background: var(--card-bg);
+  background: rgba(255, 255, 255, 0.9);
   box-shadow: var(--shadow);
   border-radius: 24px;
-  padding: 32px 40px;
-  width: 100vw;
-  min-width: 0;
-  margin: 0;
+  padding: 48px 60px;
+  max-width: 650px;
+  width: 90%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
   box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(10px);
 }
 
 /* Result Section - Two Column Layout */

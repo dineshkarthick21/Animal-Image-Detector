@@ -1,25 +1,8 @@
-# Model files (large files - 100MB+)
+# Model files
 model/cnn_model.h5
-*.h5
-*.pkl
-*.joblib
-*.pth
-*.pt
-*.onnx
-*.pb
-*.model
 
-# Large dataset files (100MB+)
-dataset/train/**/*.jpg
-dataset/train/**/*.jpeg
-dataset/train/**/*.png
-dataset/test/**/*.jpg
-dataset/test/**/*.jpeg
-dataset/test/**/*.png
-*.zip
-*.rar
-*.tar.gz
-*.tar
+# Dataset files (too large for GitHub)
+dataset/
 
 # Python
 __pycache__/
@@ -44,7 +27,6 @@ wheels/
 *.egg
 venv/
 ENV/
-env/
 
 # Node
 node_modules/
