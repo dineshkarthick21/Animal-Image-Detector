@@ -1,3 +1,6 @@
+# Model files
+model/cnn_model.h5
+
 # Dataset files (too large for GitHub)
 dataset/
 
