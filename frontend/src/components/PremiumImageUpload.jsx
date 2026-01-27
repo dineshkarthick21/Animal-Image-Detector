@@ -117,12 +117,36 @@ function PremiumImageUpload() {
   const [preview, setPreview] = useState(null);
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
 
   const handleFileChange = (e) => {
     const image = e.target.files[0];
-    setFile(image);
-    setPreview(URL.createObjectURL(image));
-    setResult("");
+    if (image && image.type.startsWith('image/')) {
+      setFile(image);
+      setPreview(URL.createObjectURL(image));
+      setResult("");
+    }
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+    const droppedFile = e.dataTransfer.files[0];
+    if (droppedFile && droppedFile.type.startsWith('image/')) {
+      setFile(droppedFile);
+      setPreview(URL.createObjectURL(droppedFile));
+      setResult("");
+    }
   };
 
   const handlePredict = async () => {
@@ -157,12 +181,27 @@ function PremiumImageUpload() {
           <div className="premium-title">🐾 Animal Detector</div>
           <div className="premium-subtitle">Upload an image to predict the animal!</div>
           <div className="premium-controls">
-            <input
-              className="premium-upload"
-              type="file"
-              accept="image/*"
-              onChange={handleFileChange}
-            />
+            <div 
+              className={`drag-drop-area ${isDragging ? 'dragging' : ''}`}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+            >
+              <div className="drag-drop-icon">🐉</div>
+              <div className="drag-drop-text">
+                {isDragging ? 'Drop your image here!' : 'Drag & Drop your image here'}
+              </div>
+              <div className="drag-drop-or">or</div>
+              <label className="file-input-label">
+                <input
+                  className="premium-upload"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                />
+                Choose File
+              </label>
+            </div>
             {preview && (
               <img className="premium-preview" src={preview} alt="preview" />
             )}
